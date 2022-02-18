@@ -24,7 +24,8 @@ pipeline {
     } 
 post {
         always {
-            archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            junit 'build/reports/**/*.xml'
             build job: 'java_pipline', parameters: [string(name: 'buildartifact', value: 'checkme')]
         }
     }
