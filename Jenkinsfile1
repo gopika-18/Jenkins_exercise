@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    stages{
+        stage("build")
+        {
+            steps
+            {
+                copyArtifacts filter: 'target/*.jar', fingerprintArtifacts: true, projectName: 'jenkins_pipeline', selector: workspace()
+                dir('target') {
+                    sh "chmod 777 devops-exercise-0.0.1-SNAPSHOT.jar"
+                    sh "java -jar devops-exercise-0.0.1-SNAPSHOT.jar"
+                }
+            }    
+        }
+    }
+}
