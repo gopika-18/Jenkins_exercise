@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+    agent any 
+    options {
+        copyArtifactPermission('jenkins_pipeline,java_pipeline');
+    }
     stages{
         stage("build")
         {
