@@ -1,32 +1,35 @@
 pipeline {
     agent any
-  tools{
-    maven 'Maven'
-  }
+    tools {
+            maven 'Maven' 
+          }
     stages {
+        stage('Clone sources') {
+            steps {
+                git url: 'https://github.com/gopika-18/Jenkins_exercise.git'
+            }
+        }
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
-            }
+                sh 'mvn -V -U -e clean install -Dsurefire.useFile=false'
+            } 
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh 'mvn -U -V -e -DdependenciesToScan -Dgroupid=org.knime.devops.exercise test'
             }
         }
-       stage('SonarQube analysis') {
+        stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
+                    sh "mvn -V -U -e sonar:sonar"
                 }
             }
         }
-    } 
-post {
+    }
+    post {
         always {
-            archiveArtifacts artifacts: '**/*.jar', fingerprint: true
-            junit 'build/reports/**/*.xml'
-            build job: 'java_pipline', parameters: [string(name: 'buildartifact', value: 'checkme')]
+            archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
         }
     }
 }
