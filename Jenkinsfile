@@ -25,7 +25,7 @@ pipeline {
 post {
         always {
             archiveArtifacts artifacts: 'target/*.jar'
-            build job: 'java_pipline', parameters: [string(name: 'buildartifact', value: 'checkme')
+            build job: 'java_pipline', parameters: [string(name: 'buildartifact', value: 'checkme')]
         }
     }
 }
