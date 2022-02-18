@@ -21,15 +21,11 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') {
-            steps {
-                sh './jenkins/scripts/deliver.sh'
-            }
-        }
     } 
 post {
         always {
             archiveArtifacts artifacts: 'target/*.jar'
+            build job: 'java_pipline', parameters: [string(name: 'buildartifact', value: 'checkme')
         }
     }
 }
