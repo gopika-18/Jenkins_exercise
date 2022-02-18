@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn -V -U -e clean install -Dsurefire.useFile=false'
+                sh 'mvn -V -U -e clean install -Dsurefire.useFile=false -Dsurefire.useManifestOnlyJar=false'
             } 
         }
         stage('Result') {
