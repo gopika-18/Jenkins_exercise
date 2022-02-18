@@ -11,12 +11,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn -V -U -e clean install -Dsurefire.useFile=false'
+                sh 'mvn -V -U -e clean compile'
             } 
         }
         stage('Test') {
             steps {
-                sh 'mvn -U -V -e -DdependenciesToScan -Dgroupid=org.knime.devops.exercise test'
+                sh 'mvn -V -U -e test'
             }
         }
         stage('SonarQube analysis') {
