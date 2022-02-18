@@ -11,12 +11,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn -V -U -e clean install -Dsurefire.useFile=false -Dmaven.test.skip=true'
+                sh 'mvn -V -U -e clean install -Dsurefire.useFile=false'
             } 
         }
-        stage('Test') {
+        stage('Result') {
             steps {
-                sh 'mvn -V -U -e test -Dsurefire.useFile=false'
+                junit allowEmptyResults: true, checksName: '**/src/main/java/**', skipMarkingBuildUnstable: true, testResults: '**/target/surefire-reports/TEST-*.xml'
             }
         }
         stage('SonarQube analysis') {
