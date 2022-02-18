@@ -33,4 +33,4 @@ pipeline {
              build job: 'java_pipeline'
         }
     }  
-}
+} 
