@@ -32,5 +32,5 @@ pipeline {
             archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
              build job: 'java_pipeline'
         }
-    }
+    } 
 }
