@@ -4,17 +4,17 @@ pipeline {
             maven 'Maven' 
           }
     stages {
-        stage('Clone sources') {
+        stage('Checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gopika-18/Jenkins_exercise.git']]])
             }
         }
-        stage('Build') {
+        stage('Compile') {
             steps {
                 sh 'mvn compile -Dsurefire.useFile=false -Dmaven.test.skip=true'
             } 
         }
-        stage('test') {
+        stage('Test') {
             steps {
                 sh 'mvn test -Dmaven.test.failure.ignore=true'
             }
@@ -26,8 +26,8 @@ pipeline {
         }
         stage('SonarQube analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh "mvn -V -U -e sonar:sonar"
+                withSonarQubeEnv(credentialsId: 'sonarqube') {
+                    sh "mvn sonar:sonar"
                 }
             }
         }
