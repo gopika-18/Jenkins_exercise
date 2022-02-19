@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class sampleTest {
 	@Test
 	void succeedingTest() {
-		// does nothing on purpose
+		assertEquals( "Test fails on purpose", "Test fails on purpose");// does nothing on purpose
 	}
 	
 	
