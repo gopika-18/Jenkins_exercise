@@ -11,8 +11,13 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn -V -U -e clean install -Dsurefire.useFile=false'
+                sh 'mvn -V -U -e clean install -Dsurefire.useFile=false -Dmaven.test.skip=true'
             } 
+        }
+        stage('test') {
+            steps {
+                sh 'mvn test -Dmaven.test.failure.ignore=true'
+            }
         }
         stage('Result') {
             steps {
