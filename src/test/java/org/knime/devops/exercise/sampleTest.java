@@ -1,7 +1,8 @@
 package org.knime.devops.exercise;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class sampleTest {
 	@Test
@@ -12,6 +13,6 @@ public class sampleTest {
 	
 	@Test
 	void failingTest() {
-		//
+		assertEquals(1, 2, "Test fails on purpose");
 	}	
 }
