@@ -26,9 +26,10 @@ pipeline {
         }
         stage('SonarQube analysis') {
             steps {
-                withSonarQubeEnv(credentialsId: 'sonarqube') {
-                    sh "mvn sonar:sonar"
-                }
+                   mvn clean verify sonar:sonar \
+                        -Dsonar.projectKey=Jekins_pipeline_exercise \
+                        -Dsonar.host.url=http://3.123.27.181:9000 \
+                        -Dsonar.login=bae084151cf30234e8d951870094645d3763137d    
             }
         }
     }
