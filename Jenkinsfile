@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                sh 'mvn compile -Dsurefire.useFile=false -Dmaven.test.skip=true'
+                sh 'mvn clean compile -Dsurefire.useFile=false -Dmaven.test.skip=true'
             } 
         }
         stage('Test') {
@@ -26,7 +26,7 @@ pipeline {
         }
         stage('SonarQube analysis') {
             steps {
-                   sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=Jekins_pipeline_exercise -Dsonar.host.url=http://3.123.27.181:9000 -Dsonar.login=bae084151cf30234e8d951870094645d3763137d'    
+                   sh 'mvn sonar:sonar'    
             }
         }
     }
