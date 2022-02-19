@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class sampleTest {
 	@Test
 	void test1() {
-		system.out.println("Hello World");
+		System.out.println("Hello World");
 	}
 	@Test
 	void succeedingTest() {
