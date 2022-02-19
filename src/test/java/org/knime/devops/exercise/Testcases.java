@@ -4,14 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class sampleTest {
-	@Test
-	void test1() {
-		System.out.println("Hello World");
-	}
+public class Testcases {
 	@Test
 	void succeedingTest() {
-		assertEquals(1, 2, "Test fails on purpose");// does nothing on purpose
+		// does nothing on purpose
 	}
 	
 	
