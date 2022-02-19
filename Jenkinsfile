@@ -31,6 +31,12 @@ pipeline {
                 }
             }
         }
+        stage('Quality gates')
+        {
+            steps{
+                waitForQualityGate abortPipeline: true
+            }
+        }
     }
     post {
         always {
