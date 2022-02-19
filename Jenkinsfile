@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn -V -U -e clean install -Dsurefire.useFile=false -Dsurefire.useManifestOnlyJar=false -DtestSourceDirectory=src/test/java/org/knime/devops/exercise/'
+                sh 'mvn -V -U -e clean install -Dsurefire.useFile=false -Dsurefire.useManifestOnlyJar=false -DtestSourceDirectory=src/test/java/org/knime/devops/exercise/*.java'
             } 
         }
         stage('Result') {
