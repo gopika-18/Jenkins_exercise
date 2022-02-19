@@ -24,6 +24,7 @@ pipeline {
                 withSonarQubeEnv('SonarQube') {
                     sh "mvn -V -U -e sonar:sonar"
                 }
+                waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube'
             }
         }
     }
