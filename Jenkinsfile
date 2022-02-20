@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                sh 'mvn clean install -Dsurefire.useFile=false -Dmaven.test.skip=true'
+                sh 'mvn compile -Dsurefire.useFile=false -Dmaven.test.skip=true'
             } 
         }
         stage('Test') {
